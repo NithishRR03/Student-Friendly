@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Student Friendly — build your career file</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050505; --ink:#F6F6F6; --ink-soft:#A3A3A3;
+    --glass:rgba(255,255,255,0.06); --glass-strong:rgba(255,255,255,0.10);
+    --line:rgba(255,255,255,0.16); --line-soft:rgba(255,255,255,0.09);
+    --accent:#FFFFFF; --ok:#E8E8E8;
+    font-size:16px;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Source Sans 3',sans-serif;line-height:1.5;
+    min-height:100%;position:relative;overflow-x:hidden;
+  }
+  body::before, body::after{
+    content:"";position:fixed;border-radius:50%;filter:blur(90px);z-index:0;pointer-events:none;
+  }
+  body::before{width:520px;height:520px;background:rgba(255,255,255,0.14);top:-160px;left:-120px;}
+  body::after{width:460px;height:460px;background:rgba(255,255,255,0.10);bottom:-140px;right:-100px;}
+  header, .wrap, footer{position:relative;z-index:1;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0;letter-spacing:-0.01em;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+
+  header{position:sticky;top:0;top:env(safe-area-inset-top,0px);background:rgba(5,5,5,0.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft);z-index:10;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:920px;margin:0 auto;}
+  .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem;}
+  .brand em{font-style:normal;color:var(--ink-soft);}
+  .nav-links{display:flex;gap:22px;font-size:0.92rem;}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);border-bottom:1px solid transparent;padding-bottom:2px;}
+  .nav-links a:hover{border-color:var(--ink);color:var(--ink);}
+
+  .hero{padding:64px 0 48px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;}
+  @media (max-width:720px){.hero{grid-template-columns:1fr;padding:40px 0 32px;}}
+  .hero h1{font-size:clamp(2.1rem,5vw,3rem);line-height:1.08;max-width:11ch;}
+  .hero p{max-width:46ch;color:var(--ink-soft);font-size:1.05rem;margin-top:16px;}
+  .cta-row{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:0.95rem;padding:12px 22px;border-radius:12px;border:1px solid var(--ink);background:var(--ink);color:#050505;cursor:pointer;text-decoration:none;display:inline-block;}
+  .btn:hover{opacity:0.85;}
+  .btn.ghost{background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);border:1px solid var(--line);}
+
+  .stack{position:relative;height:260px;}
+  .card-tab{position:absolute;width:100%;max-width:280px;background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 8px 30px rgba(0,0,0,0.35);}
+  .card-tab .t{font-size:0.72rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;}
+  .card-tab .v{font-family:'Fraunces',serif;font-size:1.3rem;margin-top:4px;}
+  .card-tab.a{top:0;left:0;transform:rotate(-3deg);z-index:3;}
+  .card-tab.b{top:70px;left:60px;transform:rotate(2deg);z-index:2;}
+  .card-tab.c{top:140px;left:20px;transform:rotate(-1.5deg);z-index:1;}
+  @media (max-width:720px){.stack{display:none;}}
+
+  section{padding:52px 0;border-top:1px solid var(--line-soft);}
+  .eyebrow{color:var(--ink-soft);font-size:0.85rem;font-weight:600;margin-bottom:8px;}
+  section h2{font-size:1.7rem;max-width:24ch;}
+  section > p.lede{color:var(--ink-soft);max-width:58ch;margin-top:10px;}
+
+  form{margin-top:26px;display:grid;gap:14px;max-width:520px;}
+  label{font-size:0.85rem;color:var(--ink-soft);display:block;margin-bottom:5px;}
+  input, textarea{width:100%;font-family:inherit;font-size:0.98rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);}
+  textarea{resize:vertical;min-height:90px;}
+  input:focus, textarea:focus, button:focus, a.btn:focus{outline:2px solid var(--ink);outline-offset:2px;}
+  .save-msg{font-size:0.85rem;color:var(--ok);min-height:1.2em;}
+
+  .checklist{margin-top:22px;display:grid;gap:10px;max-width:560px;}
+  .check-item{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+  .check-item input{width:auto;margin-top:3px;accent-color:var(--ink);}
+  .check-item label{color:var(--ink);font-size:0.95rem;margin:0;cursor:pointer;}
+  .progress{font-size:0.85rem;color:var(--ink-soft);margin-top:10px;}
+
+  .feedback{margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--ink);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:0 14px 14px 0;display:none;}
+  .feedback.show{display:block;}
+  .feedback .tag{font-size:0.75rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
+  .feedback p{margin:6px 0 0;font-size:0.95rem;}
+  .stamp-note{margin-top:8px;font-size:0.82rem;color:var(--ink-soft);}
+
+  .privacy ul{margin:16px 0 0;padding-left:20px;color:var(--ink-soft);font-size:0.95rem;}
+  .privacy li{margin-bottom:8px;}
+
+  .premium{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-top:20px;}
+  .premium .badge{display:inline-block;font-size:0.72rem;font-weight:700;color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:3px 10px;margin-bottom:8px;}
+
+  footer{padding:34px 0 50px;color:var(--ink-soft);font-size:0.85rem;border-top:1px solid var(--line-soft);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">Student <em>Friendly</em></div>
+    <nav class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#feedback">CV check</a>
+      <a href="#linkedin">LinkedIn</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero" style="border-top:none;padding-top:64px;">
+    <div>
+      <h1>Build the file that gets you hired.</h1>
+      <p>A free pilot for students turning coursework into a career: a home for your profile, a second pair of eyes on your CV, and a checklist for the profile recruiters actually read.</p>
+      <div class="cta-row">
+        <a href="#profile" class="btn">Start your profile</a>
+        <a href="#feedback" class="btn ghost">Check a CV</a>
+      </div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div class="card-tab a"><div class="t">Profile</div><div class="v">Started</div></div>
+      <div class="card-tab b"><div class="t">CV notes</div><div class="v">1 suggestion</div></div>
+      <div class="card-tab c"><div class="t">LinkedIn</div><div class="v">3 of 6 done</div></div>
+    </div>
+  </section>
+
+  <section id="profile">
+    <div class="eyebrow">Step one</div>
+    <h2>Open your file</h2>
+    <p class="lede">A short profile — just enough for us to tell you apart. It's saved on this device only; nothing is sent anywhere.</p>
+    <form id="profileForm" onsubmit="return false;">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your name">
+      </div>
+      <div>
+        <label for="uni">University &amp; course</label>
+        <input id="uni" type="text" placeholder="e.g. UCL, MSc Data Science">
+      </div>
+      <div>
+        <label for="bio">Short bio</label>
+        <textarea id="bio" placeholder="A couple of sentences about what you're looking for."></textarea>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <button class="btn" type="button" onclick="saveProfile()">Save profile</button>
+        <span class="save-msg" id="saveMsg"></span>
+      </div>
+    </form>
+  </section>
+
+  <section id="feedback">
+    <div class="eyebrow">Step two</div>
+    <h2>Paste your CV, get one honest note</h2>
+    <p class="lede">The pilot gives one free, high-level suggestion per check — the single thing most worth fixing first.</p>
+    <form onsubmit="return false;">
+      <label for="cv">CV text</label>
+      <textarea id="cv" style="min-height:160px;max-width:640px;" placeholder="Paste the text of your CV here…"></textarea>
+      <div>
+        <button class="btn" type="button" onclick="checkCV()">Get my suggestion</button>
+      </div>
+    </form>
+    <div class="feedback" id="cvFeedback">
+      <div class="tag" id="cvTag">Top suggestion</div>
+      <p id="cvText"></p>
+      <p class="stamp-note">This is a rule-of-thumb check, not a full review — treat it as a starting point.</p>
+    </div>
+  </section>
+
+  <section id="linkedin">
+    <div class="eyebrow">Step three</div>
+    <h2>The LinkedIn checklist</h2>
+    <p class="lede">Six things recruiters actually look for, in order of impact. Tick them off as you go.</p>
+    <div class="checklist" id="checklist">
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Photo, headline and banner filled in — profiles with a photo get far more views</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Headline names what you're looking for, not just your degree title</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">About section written in first person, 3–4 short paragraphs</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Each experience entry has one measurable outcome, not just duties</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">At least five relevant skills added and pinned to the top</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Custom URL set (not the default numbers-and-letters one)</label></div>
+    </div>
+    <div class="progress" id="progressMsg"></div>
+  </section>
+
+  <section id="privacy" class="privacy">
+    <div class="eyebrow">Before you share anything</div>
+    <h2>How your data is handled</h2>
+    <ul>
+      <li>Everything on this page — your profile and any CV text — stays on your own device. There's no account and nothing is uploaded to a server in this pilot.</li>
+      <li>No analytics or tracking cookies run on this page.</li>
+      <li>If a future version stores data on a server, that version will explain what's collected, why, and give you a clear way to delete it — in line with UK GDPR.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="premium">
+      <div>
+        <span class="badge">Coming later</span>
+        <h3 style="font-size:1.15rem;">Unlimited suggestions &amp; full CV builder — £7.99/month</h3>
+        <p style="color:var(--ink-soft);font-size:0.92rem;margin:6px 0 0;max-width:46ch;">This pilot is free while it's being tested. Paid plans switch on once the project is legally ready to trade.</p>
+      </div>
+      <button class="btn ghost" type="button" disabled style="opacity:0.6;cursor:not-allowed;">Not yet available</button>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">Student Friendly — a student pilot project. Not a registered business yet.</div>
+</footer>
+
+<script>
+function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function safeSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+function saveProfile(){
+  const data = {
+    name: document.getElementById('name').value,
+    uni: document.getElementById('uni').value,
+    bio: document.getElementById('bio').value
+  };
+  safeSet('dossier_profile', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.textContent = 'Saved on this device.';
+  setTimeout(()=>{ msg.textContent=''; }, 3000);
+}
+
+function loadProfile(){
+  const raw = safeGet('dossier_profile');
+  if(!raw) return;
+  try{
+    const data = JSON.parse(raw);
+    if(data.name) document.getElementById('name').value = data.name;
+    if(data.uni) document.getElementById('uni').value = data.uni;
+    if(data.bio) document.getElementById('bio').value = data.bio;
+  }catch(e){}
+}
+
+function checkCV(){
+  const text = document.getElementById('cv').value.trim();
+  const box = document.getElementById('cvFeedback');
+  const out = document.getElementById('cvText');
+  const tag = document.getElementById('cvTag');
+  if(!text){
+    tag.textContent = 'Nothing to check yet';
+    out.textContent = 'Paste your CV text above first.';
+    box.classList.add('show');
+    return;
+  }
+  const words = text.split(/\s+/).filter(Boolean);
+  const wordCount = words.length;
+  const hasNumbers = /\d/.test(text);
+  const weakVerbs = /\b(responsible for|worked on|helped with|involved in|duties included)\b/i.test(text);
+  const actionVerbs = /\b(led|built|designed|launched|increased|reduced|created|managed|analysed|analyzed|delivered)\b/i.test(text);
+
+  let suggestion;
+  if(wordCount < 120){
+    tag.textContent = 'Top suggestion: depth';
+    suggestion = "This reads quite short for a CV — recruiters usually expect 2–4 concrete examples per role. Add detail on what you actually did, not just your title.";
+  } else if(weakVerbs && !actionVerbs){
+    tag.textContent = 'Top suggestion: verbs';
+    suggestion = 'Phrases like "responsible for" or "helped with" describe a role, not a result. Swap them for what you did and led — try "built", "increased" or "reduced".';
+  } else if(!hasNumbers){
+    tag.textContent = 'Top suggestion: evidence';
+    suggestion = "There's no measurable outcome anywhere in this text. Even one number — time saved, people reached, size of a project — makes a claim easier to believe.";
+  } else if(wordCount > 700){
+    tag.textContent = 'Top suggestion: length';
+    suggestion = "This is running long for a first read. Aim to trim it to what fits comfortably on two pages, cutting anything that doesn't support the role you want.";
+  } else {
+    tag.textContent = 'Top suggestion: structure';
+    suggestion = "The content looks solid. Check that your strongest, most relevant point is in the first third — that's the part most likely to actually get read.";
+  }
+  out.textContent = suggestion;
+  box.classList.add('show');
+}
+
+function updateProgress(){
+  const boxes = document.querySelectorAll('#checklist input[type=checkbox]');
+  let done = 0;
+  boxes.forEach(b=>{ if(b.checked) done++; });
+  document.getElementById('progressMsg').textContent = done + ' of ' + boxes.length + ' done';
+  const state = {};
+  boxes.forEach(b=>{ state[b.id] = b.checked; });
+  safeSet('dossier_checklist', JSON.stringify(state));
+}
+
+function loadChecklist(){
+  const raw = safeGet('dossier_checklist');
+  if(!raw){ updateProgress(); return; }
+  try{
+    const state = JSON.parse(raw);
+    Object.keys(state).forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.checked = state[id];
+    });
+  }catch(e){}
+  updateProgress();
+}
+
+document.querySelectorAll('#checklist input[type=checkbox]').forEach(b=>{
+  b.addEventListener('change', updateProgress);
+});
+
+loadProfile();
+loadChecklist();
+</script>
+</body>
+</html>
